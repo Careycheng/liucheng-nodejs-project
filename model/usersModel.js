@@ -4,7 +4,7 @@ const async = require('async');
 
 const usersModel = {
     /**
-     * 
+     * 注册操作
      * @param {Object} data 
      * @param {Function} cb 
      */
@@ -30,7 +30,7 @@ const usersModel = {
             async.series([
                 function (callback) {
                     //查询是否已注册
-                    db.collection('User').find({ userName: saveData.Username }).count(function (err, num) {
+                    db.collection('User').find({ userName: saveData.userName }).count(function (err, num) {
                         if (err) {
                             callback({ code: -101, msg: "查询用户是否失败" });
                         } else if (num !== 0) {
@@ -75,6 +75,47 @@ const usersModel = {
                 client.close();
             });
         })
+    },
+
+
+    /**
+     *
+     *登录处理
+     * @param {Object} data
+     * @param {Function} cb
+     */
+
+    login(data, cb) {
+        MongoClient.connect(url, function(err, client) {
+            if (err) {
+                cd({code: -100, msg: '数据库连接失败'});
+            } else {
+                const db = client.db('Student_Management_System');
+
+                db.collection('User').find({
+                    userName: data.userName,
+                    Password: data.Password
+                }).toArray(function (err, data) {
+                    if (err) {
+                        console.log('查询数据库失败', err);
+                        cb({code: -101, msg: err});
+                        client.close();
+                    } else if (data.length <= 0){
+                        console.log('用户不存在');
+                        cb({code: -102, msg: '用户名或密码错误'});
+                    } else {
+                        console.log('用户可以登录');
+
+                        cb(null, {
+                            userName: data[0].userName,
+                            NickName: data[0].NickName,
+                            is_admin: data[0].is_admin
+                        });
+                    }
+                    client.close();
+                });
+            }
+        });
     }
 }
 module.exports = usersModel;

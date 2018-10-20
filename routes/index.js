@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 router.get('/register.html',function(req,res){
   res.render('register');
 });
+//登录页面
 router.get('/login.html', function (req, res) {
   res.render('login');
 });

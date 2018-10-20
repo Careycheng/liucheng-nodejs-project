@@ -1,0 +1,66 @@
+body {
+    background: url('/images/backgroundImage.jpg') no-repeat;
+    background-size: 100%
+}
+
+.container {
+    width: 500px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.4);
+    margin-top: 120px;
+    color: whitesmoke;
+    border-radius: 8px;
+}
+
+.col-md-offset-4 {
+    margin-left: 25.333333%
+}
+
+.form-group,
+h1 {
+    width: 600px
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -46px;
+    margin-top: 50px;
+}
+
+.row h1 {
+    margin-bottom: 35px;
+}
+
+.form-horizontal .form-group {
+    margin-top: 30px;
+    margin-left: -20px;
+}
+
+.form-group input {
+    width: 300px;
+}
+
+.form-horizontal {
+    transform: translateX(-60%)
+}
+
+#check {
+    width: 30px;
+    margin-top: 10px;
+}
+
+.row span {
+    display: none;
+}
+
+.btn-default {
+    width: 100px;
+    height: 40px;
+    margin-right: 30px;
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: bolder;
+    background-color: #b2b2b2;
+    border: none;
+    line-height: 30px;
+}
