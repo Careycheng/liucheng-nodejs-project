@@ -58,4 +58,16 @@ router.post('/login', function(req, res) {
     }
   });
 });
+
+//退出登录
+router.get('/sign_out', function (req,res) {
+  res.clearCookie('userName');
+  res.clearCookie('Nickname');
+  res.clearCookie('isAdmin');
+  res.send('<script>location.replace("/")</script>');
+
+});
+
+
+
 module.exports = router;

@@ -116,6 +116,41 @@ const usersModel = {
                 });
             }
         });
+    },
+
+    
+    /**
+     *
+     *
+     * @param {*} data
+     * @param {*} cb
+     */
+    getUserList(data,cb) {
+        MongoClient.connect(url, function (err, client) {
+            if (err) {
+                cd({code: -100, msg: '连接数据库失败'});
+            } else {
+                var db = client.db('Student_Management_System');
+
+                var limitNum = parseInt(data.pageSize);
+                var skipNum = data.page * data.pageSize - pageSize;
+
+                async.parallel([
+
+                ], function(err, result){
+                    if (err) {
+                        cb(err);
+                    } else {
+                        cb(null,{
+                            totalPage: Math.ceil(result[0] / data.pageSize),
+                            userList:result[1],
+                            page: data.page
+                        });
+                    }
+                    client.close();
+                });
+            }
+        })
     }
 }
 module.exports = usersModel;
