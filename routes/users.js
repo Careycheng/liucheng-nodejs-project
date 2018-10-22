@@ -68,6 +68,37 @@ router.get('/sign_out', function (req,res) {
 
 });
 
+router.get('/search', function (req,res) {
+  var page = req.query.page || 1;
+  var pageSize = req.query.pageSize || 5;
+  let nickname = new RegExp(req.query.nickname);
+  var nicknameUrl = req.query.nickname;
+  console.log(nickname)
+  if (req.query.nickname == '') {
+    res.redirect('/user-manager.html');
+  } else {
+    usersModel.searchList({
+      page: page,
+      pageSize: pageSize,
+      NickName: nickname
+    }, function (err,data) {
+      if (err) {
+        res.render('werror', err);
+      } else {
+        res.render('user-manager', {
+          userName: req.cookies.userName,
+          Nickname: req.cookies.Nickname,
+          is_admin: parseInt(req.cookies.isAdmin) ? '(管理员)' : '(普通用户)',
+          userList: data.userList,
+          page: data.page,
+          totalPage: data.totalPage,
+          nicknameUrl: nicknameUrl
+        });
+      }
+    })
+  }
+})
+
 
 
 module.exports = router;

@@ -27,8 +27,8 @@ router.get('/login.html', function (req, res) {
 
 
 //用户管理页面
-router.get('/login.html', function(req,res) {
-  console.log(parseInt(11111111))
+router.get('/user-manager.html', function(req,res) {
+
   if (req.cookies.userName && parseInt(req.cookies.isAdmin)) {
     let page = req.query.page || 1;
     let pageSize = req.query.pageSize || 5;
@@ -57,6 +57,15 @@ router.get('/login.html', function(req,res) {
   }
 });
 
+
+//手机管理页面
+router.get('/moblie-manager.html', function (req, res){
+  if (req.cookies.userName && parseInt(req.cookies.isAdmin)) {
+    res.render('moblie-manager');
+  } else {
+    res.redirect('login.html');
+  }
+})
 
 
 module.exports = router;

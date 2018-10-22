@@ -121,7 +121,7 @@ const usersModel = {
     
     /**
      *
-     *
+     *获取用户列表
      * @param {*} data
      * @param {*} cb
      */
@@ -131,11 +131,31 @@ const usersModel = {
                 cd({code: -100, msg: '连接数据库失败'});
             } else {
                 var db = client.db('Student_Management_System');
+                console.log(data.page)
+                console.log(data.pageSize)
 
                 var limitNum = parseInt(data.pageSize);
-                var skipNum = data.page * data.pageSize - pageSize;
-
+                var skipNum = data.page * data.pageSize - data.pageSize;
                 async.parallel([
+                    function (callback) {
+                        db.collection('User').find().count(function (err, num) {
+                            if (err) {
+                                callback({code: -101, msg: '查询数据库失败'});
+                            } else {
+                                callback(null, num);
+                            }
+                        });
+                    },
+
+                    function (callback) {
+                        db.collection('User').find().limit(limitNum).skip(skipNum).toArray(function (err, data) {
+                            if (err) {
+                                callback({code: -101, msg: '查询数据库失败'});
+                            } else {
+                                callback(null, data);
+                            }
+                        });
+                    }
 
                 ], function(err, result){
                     if (err) {
@@ -149,6 +169,51 @@ const usersModel = {
                     }
                     client.close();
                 });
+            }
+        })
+    },
+    searchList(data,cb){
+        MongoClient.connect(url, function(err, client) {
+            if (err) {
+                console.log('连接数据库失败');
+                cb({code: -100, msg: '连接数据库失败'});
+            } else {
+                const db = client.db('Student_Management_System');
+                const limitNum = parseInt(data.pageSize);
+                const skipNum = data.page * data.pageSize - data.pageSize;
+                async.parallel([
+                    function (callback) {
+                        db.collection('User').find({ NickName: data.NickName}).count(function (err, num){
+                            if (err) {
+                                callback({code: -101, msg: '查询匹配条数失败'});
+                            } else {
+                                callback(null, num);
+                            }
+                        })
+                    },
+
+                    function(callback) {
+                        db.collection('User').find({NickName: data.NickName}).limit(limitNum).skip(skipNum).toArray(function (err, data) {
+                            if (err) {
+                                console.log('搜索匹配失败');
+                                callback({ code: -101, msg: '搜索匹配失败'});
+                            } else {
+                                callback(null, data);
+                            }
+                        })
+                    }
+                ], function (err, result) {
+                    if (err) {
+                        cb(err);
+                    } else {
+                        cb(null, {
+                            totalPage: Math.ceil(result[0] / data.pageSize),
+                            userList: result[1],
+                            page: data.page
+                        });
+
+                    }
+                })
             }
         })
     }

@@ -1,6 +1,7 @@
 function userRegister() {
     let userReg = /^\w{5,12}$/;
     let pwdReg = /^\S{6,16}$/;
+    let phoneReg = /^1[34578]\d{9}$/;
 
     //用户名验证
     $('#userName').focus(function () {
@@ -37,6 +38,8 @@ function userRegister() {
             $('#repwd-prompt').css('color', 'red');
         }
     });
+
+    //
 
     // $("#register-btn").click(function () {
     //     if ((userReg.test($("#userName").val())) && (pwdReg.test($("#Password").val())) && ($("#Repassword").val() == $("#Password").val())) {

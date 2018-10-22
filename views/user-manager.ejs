@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <style>
+        body{
+            background: url('images/backgroundImage.jpg') no-repeat;
+            background-size:100%; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="index">
+
+        <%- include('./common/header.ejs', { NickName: Nickname, is_admin: is_admin }) %>
+
+        <div class="container">
+
+            <%- include('./common/menu.ejs', { is_admin: is_admin }) %>
+
+            <div class="main">
+                <form action="/users/search" method="get">
+                    <input type="text" placeholder="请输入昵称" id="search" name="nickname">
+                    <button id="search-btn">搜索</button>
+                </form>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>用户名</th>
+                            <th>用户昵称</th>
+                            <th>手机号码</th>
+                            <th>性别</th>
+                            <th>年龄</th>
+                            <th>是否管理员</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- 循环 userList 显示用户数据 -->
+                        <% for (var i = 0; i < userList.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%= userList[i]._id %>
+                            </td>
+                            <td>
+                                <%= userList[i].userName %>
+                            </td>
+                            <td>
+                                <%= userList[i].NickName %>
+                            </td>
+                            <td>
+                                <%= userList[i].phone %>
+                            </td>
+                            <td>
+                                <%= userList[i].sex || '-' %>
+                            </td>
+                            <td>
+                                <%= userList[i].age || '-' %>
+                            </td>
+                            <td>
+                                <%= parseInt(userList[i].is_admin) ? '是' : '否' %>
+                            </td>
+                            <td>
+                                <!--
+                    1. 如果当前登录的管理员跟这条记录匹配。那么可以修改，
+                    2. 如果这条记录是管理员记录的话，那么不可以删除
+                   -->
+
+                                <% if (userList[i].userName === userName) { %>
+                                <a href="#">修改</a>
+                                <% } else if (parseInt(userList[i].is_admin)) { %>
+
+                                <% } else { %>
+                                <a href="#">修改</a>
+                                <a href="#">删除</a>
+                                <% } %>
+
+                            </td>
+                        </tr>
+                        <% } %>
+
+                    </tbody>
+                </table>
+
+                <!-- 通过 传过来  totalPage 来渲染我们的 分页组件 -->
+
+                <!-- <ul class="page">
+                    <% for (var i = 0; i < totalPage; i++) { %>
+                    <li>
+                        <a href="/user-manager.html?page=<%= i+1 %>">
+                            <%= i+1 %>页</a>
+                    </li>
+                    <% } %>
+
+                </ul> -->
+
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <% for (var i = 0; i < totalPage; i++) { %>
+                        <li>
+                            <a href="/user-manager.html?page=<%= i+1 %>">
+                                <%= i+1 %></a>
+                        </li>
+                        <% } %>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
