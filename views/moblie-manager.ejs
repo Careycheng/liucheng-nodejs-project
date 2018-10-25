@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/moblie-manager.css">
+    <style>
+        .active1{
+            background: #230e0ee0;
+        }
+        .container{
+            padding: 0;
+            margin-left: 0;
+        }
+    </style>
+</head>
+<div class="index">
+    <%- include('./common/header.ejs', { NickName: Nickname, is_admin: is_admin }) %>
+    <div class="container">
+        <%- include('./common/menu.ejs', { is_admin: is_admin }) %>
+        <div class="main">
+            <div class="add">
+                <a href="javascript:void(0)" class="add-phone">新增手机</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>图片</th>
+                        <th>手机名称</th>
+                        <th>所属品牌</th>
+                        <th>官方指导价</th>
+                        <th>二手回收价</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody" style="background:#d4d4d4">
+
+                </tbody>
+            </table>
+            <div class="upload_form">
+                <h4 class="upload_title">新增</h4>
+                <div style="display:none">
+                    <label>序号:</label>
+                    <input type="text" name="_id" class="_id">
+                </div>
+                <div>
+                    <label class="control-label">名称</label>
+                    <input type="text" name="name" id="name" placeholder="请输入名称">
+                </div>
+                <div>
+                    <label class="control-label">品牌</label>
+                    <select name="brand" id="brand">
+                        <option value="苹果"> 苹果</option>
+                        <option value="vivo"> vivo</option>
+                        <option value="OPPO"> OPPO</option>
+                        <option value="华为"> 华为</option>
+                        <option value="三星"> 三星</option>
+                        <option value="魅族"> 魅族</option>
+                        <option value="小米"> 小米</option>
+                        <option value="一加"> 一加</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="control-label">官方指导价</label>
+                    <input type="text" name="official_guide_price" id="official_guide_price" placeholder="请输入官方指导价">
+                </div>
+                <div>
+                    <label class="control-label">二手回收价</label>
+                    <input type="text" name="recovery_price" id="recovery_price" placeholder="请输入二手回收价">
+                </div>
+                <div class="img">
+                    <label class="control-label">图片</label>
+                    <input type="file" name="phoneImg" id="phoneImg">
+                </div>
+                <div class="Btn">
+                    <button id="submit" class="btn">提交</button>
+                    <a id="cancel" class="btn">取消</a>
+                </div>
+            </div>
+            <nav>
+                <ul class="pagination" style="margin-right:60px"></ul>
+            </nav>
+            <div class="update_form">
+                <h4 class="upload_title">修改手机信息</h4>
+                <div style="display:none">
+                    <label>序号:</label>
+                    <input type="text" name="_Id" id="_Id">
+                </div>
+                <div>
+                    <label class="control-label">名称</label>
+                    <input type="text" name="Name" id="Name" placeholder="请输入名称">
+                </div>
+                <div>
+                    <label class="control-label">品牌</label>
+                    <select name="Brand" id="Brand">
+                        <option value="苹果"> 苹果</option>
+                        <option value="vivo"> vivo</option>
+                        <option value="OPPO"> OPPO</option>
+                        <option value="华为"> 华为</option>
+                        <option value="三星"> 三星</option>
+                        <option value="魅族"> 魅族</option>
+                        <option value="小米"> 小米</option>
+                        <option value="一加"> 一加</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="control-label">官方指导价</label>
+                    <input type="text" name="Official_guide_price" id="Official_guide_price" placeholder="请输入官方指导价">
+                </div>
+                <div>
+                    <label class="control-label">二手回收价</label>
+                    <input type="text" name="Recovery_price" id="Recovery_price" placeholder="请输入二手回收价">
+                </div>
+                <div class="img">
+                    <label class="control-label">图片</label>
+                    <input type="file" name="PhoneImg" id="PhoneImg">
+                </div>
+                <div class="Btn">
+                    <button id="submit" class="btn">提交</button>
+                    <a id="cancel" class="btn">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/mobile.js"></script>
+
+</html>

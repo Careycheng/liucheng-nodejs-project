@@ -29,7 +29,7 @@ router.get('/login.html', function (req, res) {
 //用户管理页面
 router.get('/user-manager.html', function(req,res) {
 
-  if (req.cookies.userName && parseInt(req.cookies.isAdmin)) {
+  if (req.cookies.userName) {
     let page = req.query.page || 1;
     let pageSize = req.query.pageSize || 5;
 
@@ -60,10 +60,15 @@ router.get('/user-manager.html', function(req,res) {
 
 //手机管理页面
 router.get('/moblie-manager.html', function (req, res){
-  if (req.cookies.userName && parseInt(req.cookies.isAdmin)) {
-    res.render('moblie-manager');
+  if (req.cookies.userName) {
+    res.render('moblie-manager', {
+      userName: req.cookies.userName,
+      Nickname: req.cookies.Nickname,
+      is_admin: parseInt(req.cookies.isAdmin) ? "(管理员)" : "(普通用户)"
+     
+    });
   } else {
-    res.redirect('login.html');
+    res.redirect('/login.html');
   }
 })
 

@@ -1,0 +1,68 @@
+body,
+html {
+    background: url('/images/backgroundImage.jpg') no-repeat;
+    background-size: 100%;
+}
+
+.main {
+    position: relative;
+}
+
+.change {
+    height: 480px;
+    width: 400px;
+    position: absolute;
+    left: 275px;
+    top: 50px;
+    color: #fff;
+    background: #c3bebe;
+    font-weight: bolder;
+    display: none;
+    box-shadow: 0px 0px 2px 3px #0a0202bf;
+}
+
+.changeInfo {
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-weight: bolder;
+    width: 100%;
+}
+
+.control-label {
+    float: left;
+    margin-right: 10px;
+    margin-left: 35px;
+    line-height: 40px;
+    font-weight: bolder;
+}
+
+.col-sm-9 input {
+    width: 230px;
+    height: 40px;
+    margin-bottom: 30px;
+}
+
+.col-sm-10 {
+    margin-left: 90px;
+}
+
+.col-sm-10 a {
+    display: inline-block;
+}
+
+.btn-default {
+    width: 100px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    margin-left: 10px;
+    background: #fff;
+    border: none;
+    color: cornflowerblue;
+    font-size: 17px;
+    font-weight: bolder;
+    cursor: pointer;
+}

@@ -1,0 +1,105 @@
+body,
+html {
+    background: url('/images/backgroundImage.jpg') no-repeat;
+    background-size: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #691a8b;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #691a8b;
+}
+
+.add-phone {
+    width: 80px;
+    background: #337ab7;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: #291710;
+}
+
+.main {
+    position: relative;
+}
+
+.upload_form,.update_form {
+    height: 460px;
+    width: 400px;
+    position: absolute;
+    left: 275px;
+    top: 105px;
+    background: #c3bebe;
+    font-weight: bolder;
+    display: none;
+    box-shadow: 0px 0px 2px 3px #0a0202bf;
+}
+
+.upload_form label {
+    color: #fff;
+}
+
+.btn {
+    width: 100px;
+    height: 45px;
+    line-height: 32px;
+    text-align: center;
+    margin-left: 10px;
+    background: #fff;
+    border: none;
+    color: cornflowerblue;
+    font-size: 17px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.upload_title {
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 22px;
+    margin-top: 22px;
+    font-weight: bolder;
+    width: 100%;
+}
+
+#brand {
+    width: 115px;
+    color: #2f2825;
+    height: 25px;
+}
+
+.upload_form input {
+    height: 35px;
+    margin-bottom: 20px;
+    width: 225px;
+}
+
+#phoneImg,#PhoneImg {
+    height: 26px;
+    width: 175px;
+    margin-left: 35px;
+    outline: none;
+}
+
+.control-label {
+    margin-right: 10px;
+    margin-left: 35px;
+    line-height: 40px;
+    font-weight: bolder;
+    width: 80px;
+    text-align-last:justify;
+    font-size: 16px;
+}
+.Btn{
+    margin-left: 72px;
+    margin-top: 25px;
+}

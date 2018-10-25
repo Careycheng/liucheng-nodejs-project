@@ -9,8 +9,12 @@ router.get('/', function (req, res, next) {
 
 //注册处理
 router.post('/register', function (req, res) {
-  if (!/^\w{5,12}$/.test(req.body.userName)) {
-    res.render('werror', { code: -1, msg: '用户名必须是5-12位字符' });
+  if (!/^[\u4e00-\u9fa5a-zA-Z0-9_]{2,12}$/.test(req.body.userName)) {
+    res.render('werror', { code: -1, msg: '用户名必须是2-12位字符' });
+    return;
+  }
+  if (!(/^[\u4e00-\u9fa5a-zA-Z0-9_]{2,20}$/.test(req.body.Nickname) || req.body.Nickname == '')) {
+    res.render('werror', { code: -1, msg: '昵称必须是2-20位字符' });
     return;
   }
 
@@ -20,6 +24,13 @@ router.post('/register', function (req, res) {
   }
   if (req.body.Password != req.body.Repassword) {
     res.render('werror', { code: -1, msg: '密码必须与上次相符' });
+    return;
+  }
+  if (!(/^1[34578]\d{9}$/.test(req.body.phone) ||req.body.phone == '')) {
+    res.render('werror', {
+      code: -1,
+      msg: '手机号必须是11位数字组成的字符'
+    })
     return;
   }
 
@@ -95,10 +106,59 @@ router.get('/search', function (req,res) {
           nicknameUrl: nicknameUrl
         });
       }
-    })
+    });
   }
-})
+});
 
+//修改操作
+router.post('/update', function(req, res) {
+  var page = req.query.page || 1;
+  var pageSize = req.query.pageSize || 5;
+  var nicknameUrl = req.query.nickname || '';
+  usersModel.update({
+    page: page,
+    pageSize: pageSize,
+    NickName: req.body.nickname,
+    phone: req.body.phone,
+    sex: req.body.sex,
+    age:req.body.age,
+    _id: req.body._id
+  },function (err, data) {
+    if (err) {
+      res.render('werror', err);
+    } else {
+      res.render('user-manager', {
+        userName: req.cookies.userName,
+        Nickname: req.cookies.Nickname,
+        is_admin: parseInt(req.cookies.isAdmin) ? '(管理员)' : '(普通用户)',
+        userList: data.userList,
+        page: data.page,
+        totalPage: data.totalPage,
+        nicknameUrl: nicknameUrl
+      });
+    }
+  })
+});
+
+
+//删除操作
+router.get('/delete', function (req, res) {
+  var page = req.query.page || 1;
+  var pageSize = req.query.pageSize || 5;
+  var nicknameUrl = req.query.nickname || ''; 
+  usersModel.delete({
+    page: page,
+    pageSize:pageSize,
+    _id: req.query._id
+  }, function (err, data) {
+    if (err) {
+      res.render('werror', err);
+    } else {
+      console.log(1111);
+      res.redirect('/user-manager.html?page='+page);
+    }
+  })
+})
 
 
 module.exports = router;
