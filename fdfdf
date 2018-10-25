@@ -1,0 +1,47 @@
+[33mcommit e296a3e5c1db7d33030d3dea5d3a6c411989ff43[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Author: Carey <Carey.liu@aliyun.com>
+Date:   Thu Oct 25 14:52:53 2018 +0800
+
+    upgrade
+
+[33mcommit 9aac9e5838922320edc092d8a21fc0eae36a64d5[m
+Author: Carey <Carey.liu@aliyun.com>
+Date:   Mon Oct 22 19:16:48 2018 +0800
+
+    add search function for user management
+
+[33mcommit 813aba0689ee319c9746e8a4cb7d89878e2ad320[m
+Author: Carey <Carey.liu@aliyun.com>
+Date:   Sun Oct 21 17:05:16 2018 +0800
+
+    add index.ejs
+
+[33mcommit fed18dcd5b26e9885c5475066f3caf8395250833[m
+Author: Carey <Carey.liu@aliyun.com>
+Date:   Sat Oct 20 10:15:03 2018 +0800
+
+    add function login for user
+
+[33mcommit cd9d358650cc634569668f6ff39261dae629f66b[m
+Author: Carey <Carey.liu@aliyun.com>
+Date:   Fri Oct 19 20:30:12 2018 +0800
+
+    Improved registration function
+
+[33mcommit 82fd47269c83312cb3f1e5e0e30531bc2d9c72d5[m
+Author: Carey <Carey.liu@aliyun.com>
+Date:   Fri Oct 19 13:52:10 2018 +0800
+
+    this register js add verify function
+
+[33mcommit 49f10a9d113a6f74bc4f0e0a53beeafd98183a7c[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Carey <Carey.liu@aliyun.com>
+Date:   Thu Oct 18 17:32:09 2018 +0800
+
+    files names change
+
+[33mcommit 69616a9709992953f5b15e03f0662ee064cd04ff[m
+Author: Carey <Carey.liu@aliyun.com>
+Date:   Thu Oct 18 17:16:35 2018 +0800
+
+    My Project

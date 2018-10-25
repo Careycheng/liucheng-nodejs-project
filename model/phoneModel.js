@@ -154,8 +154,6 @@ const phoneModel = {
      */
     update(data, cb) {
         MongoClient.connect(url, function (err, client) {
-            console.log('=============******************11111111================')
-            console.log(data,'---------------------------------')
             if (err) {
                 console.log('数据库连接失败');
                 cb({ code: -100, msg: '连接数据库失败' });
@@ -170,7 +168,7 @@ const phoneModel = {
                     recovery_price: data.recovery_price,
                     imgSrc: data.imgSrc
                 };
-                console.log(updataData,"324444444444444444444444444444444444444444444444")
+               
                 var limitNum = parseInt(data.pageSize);
                 var skipNum = data.page * data.pageSize - data.pageSize;
                 async.series([
